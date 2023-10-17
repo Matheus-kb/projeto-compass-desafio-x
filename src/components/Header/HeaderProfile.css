@@ -1,0 +1,165 @@
+#header-profile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  max-height: 60px;
+  background-color: #FFF;
+}
+
+.content-header-profile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.header-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.header-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+.title-header-profile {
+  font-size: 1.25rem;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.navbar,
+.profile-header p,
+.search {
+  display: none;
+}
+
+.navbar .active {
+  font-weight: 100;
+  color: var(--primary-color)
+}
+
+@media (min-width: 768px) {
+  .title-header-profile {
+    font-size: 1.8rem;
+  }
+
+  .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .profile-header {
+    float: right;
+  }
+
+  .profile-header p {
+    display: block;
+    color: #4B4B4B;
+    margin-left: 13px;
+  }
+
+  .navbar {
+    display: flex;
+    gap: 1.92vw;
+    margin-left: 31px;
+  }
+
+  .navbar a {
+    appearance: none;
+    text-decoration-line: none;
+    color: #4B4B4B;
+    font-size: 1.125rem;
+  }
+
+  .navbar a:hover {
+    color: var(--primary-color);
+  }
+
+  .search {
+    display: block;
+    margin-right: 14px;
+  }
+
+  .search input {
+    border: none;
+    outline: none;
+    background-image: url('../../assets/svgs/search-icon.svg');
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-size: 24px;
+    padding: 12px 12px 12px 51px;
+    border-radius: 0.5rem;
+    width: 70%;
+  }
+
+  .search input::placeholder {
+    color: #B4AEAE;
+    font-size: 1rem;
+    font-family: "Roboto Mono", sans-serif;
+    font-weight: 400;
+  }
+
+}
+
+@media (min-width: 768px) {
+
+  #header-profile {
+    width: 100%;
+    height: 100%;
+    max-height: 92px;
+    background-color: #FFF;
+  }
+
+  .search {
+    display: none
+  }
+
+  .header-left {
+    width: 70%;
+  }
+
+  .header-right {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .content-header-profile {
+    padding: 24px 0px;
+  }
+
+  .title-header-profile {
+    font-size: 2.25rem;
+  }
+
+  .search input {
+    width: 292px;
+  }
+}

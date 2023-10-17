@@ -1,0 +1,75 @@
+.card.card-fc {
+  padding: 24px;
+  margin: 0;
+  max-width: 100%;
+  box-shadow: none;
+}
+
+.header-card-profile {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-card-profile p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.header-card-profile a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+
+.box-item {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: 0.875rem;
+  color: #4B4B4B;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  gap: 33px;
+}
+
+.content-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+}
+
+@media (min-width: 768px) {
+  .card.card-fc {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card.card-fc {
+    max-width: calc(280px - 48px);
+  }
+}

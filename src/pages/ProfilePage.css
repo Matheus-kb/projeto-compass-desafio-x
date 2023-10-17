@@ -1,0 +1,174 @@
+.content-profile {
+  padding: 24px 20px;
+  margin: 0 auto;
+}
+
+.search-mobile {
+  background-image: url('../assets/svgs/search-icon.svg');
+  background-repeat: no-repeat;
+  background-position: 15px center;
+  background-size: 24px;
+  padding-left: 51px;
+  background-color: #FDFEFF;
+  border-radius: 8px;
+}
+
+.input-search-mobile {
+  border: none;
+  outline: none;
+  padding: 12px;
+  width: calc(100% - 24px);
+  background-color: #FDFEFF;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.input-search-mobile::placeholder {
+  color: #B4AEAE;
+  font-size: 1rem;
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: 400;
+}
+
+.profile-photo {
+  align-items: center;
+  box-shadow: none;
+  margin: 0;
+  margin-top: 32px;
+  padding: 24px;
+  max-width: 100%;
+}
+
+.profile-photo img {
+  width: 114px;
+  height: 114px;
+  padding: 3px;
+  border-radius: 50%;
+  border: 3px solid #ed6d25;
+}
+
+.name-profile {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+.status-profile {
+  margin-top: 20px;
+  font-size: 1.125rem;
+}
+
+.edit-profile {
+  margin: 0;
+  box-shadow: none;
+  padding: 14px;
+  margin-top: 16px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.edit-profile p {
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+
+.cards-profile-order {
+  display: grid;
+  margin-top: 32px;
+  gap: 40px;
+}
+
+
+.friends-card {
+  order: 1
+}
+
+.info-profile-card {
+  order: 2
+}
+
+.communities-card {
+  order: 3
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .cards-profile-order {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .info-profile-card {
+    order: 1
+  }
+
+  .friends-card {
+    display: flex;
+    order: 2;
+    width: 47.2%;
+  }
+
+  .communities-card {
+    display: flex;
+    order: 3;
+    width: 47.2%;
+  }
+
+  .friends-card .card.card-friends,
+  .communities-card .card.card-friends {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .search-mobile {
+    display: none;
+  }
+
+  .content-profile {
+    width: 100%;
+    max-width: 1216px;
+    display: flex;
+    gap: 32px;
+  }
+
+  .box-left-profile {
+    width: 23.02%;
+  }
+
+  .cards-profile-order {
+    display: flex;
+    width: 76.92%;
+  }
+
+  .info-profile-card {
+    order: 0;
+  }
+
+  .friends-card {
+    display: none;
+  }
+
+  .communities-card {
+    display: none;
+  }
+
+  .desktop {
+    display: block;
+  }
+
+  .friends-card-desktop {
+    margin-bottom: 32px;
+  }
+
+  .profile-photo {
+    width: auto;
+  }
+
+}

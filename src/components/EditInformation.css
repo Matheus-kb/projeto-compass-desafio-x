@@ -1,0 +1,255 @@
+.header-card-edit {
+  text-align: center;
+}
+
+.form-inputs-edit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 35px 0 31px 0;
+  gap: 19px;
+}
+
+.form-actions-edit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 21.78px;
+}
+
+.title-header-card {
+  font-size: 1.25rem;
+}
+
+.inputs_ {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 19px;
+  width: 100%;
+}
+
+.inputs-edit {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 19px;
+}
+
+.inputs-edit input {
+  width: 50%;
+}
+
+.image-profile {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .header-card-edit {
+    text-align: center;
+  }
+
+  .inputs_ {
+    width: 100%;
+  }
+
+  .inputs-edit {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .header-card-edit svg {
+    display: none;
+  }
+
+  .title-header-card-edit {
+    font-size: 2.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5.69rem;
+  }
+
+  .image-profile {
+    display: contents;
+  }
+
+  .editions {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .pen {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 92px;
+    border: 3px solid #ed6d25;
+    position: relative;
+    margin-top: -3rem;
+    margin-inline-start: 3.5rem;
+    background-color: #fff;
+  }
+
+  .pen:hover {
+    cursor: pointer;
+  }
+
+  .profile-picture {
+    width: 12.85vw;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #ed6d25;
+    margin-inline-start: 20%;
+  }
+
+  .card.edit {
+    width: 40.83vw;
+    height: 70vh;
+    margin-bottom: 2.5rem;
+  }
+
+  .image-profile .card {
+    width: 22.5vw;
+    height: 30.09vh;
+  }
+
+  .inputs-edit input {
+    width: 15.9vw;
+  }
+
+  .form-inputs-edit {
+    margin-bottom: 40%;
+  }
+
+  .form-actions-edit {
+    align-items: center;
+  }
+
+  .inputs_ {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .inputs_ input {
+    width: 15.9vw;
+  }
+
+  .inputs-edit {
+    gap: 10px;
+  }
+
+  .MhvyR {
+    width: 18vw !important;
+  }
+
+  .editions {
+    width: 100%;
+    margin-top: 4.58%;
+  }
+
+  .edits {
+    width: 100%;
+    max-width: 592px;
+    margin: auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header-card-edit svg {
+    display: none;
+  }
+
+  .title-header-card-edit {
+    font-size: 2.25rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5.69rem;
+  }
+
+  .image-profile {
+    display: contents;
+  }
+
+  .editions {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .pen {
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 92px;
+    border: 3px solid #ed6d25;
+    position: relative;
+    margin-top: -3rem;
+    margin-inline-start: 3.5rem;
+    background-color: #fff;
+  }
+
+  .pen:hover {
+    cursor: pointer;
+  }
+
+  .profile-picture {
+    width: 8.85vw;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #ed6d25;
+    margin-inline-start: 20%;
+  }
+
+  .card.edit {
+    width: 30.83vw;
+    height: 70vh;
+    margin-bottom: 3%;
+  }
+
+  .image-profile .card {
+    width: 14.58vw;
+    height: 30.09vh;
+  }
+
+  .form-inputs-edit {
+    margin-bottom: 40%;
+  }
+
+  .form-actions-edit {
+    align-items: center;
+  }
+
+  .inputs-edit {
+    gap: 10px;
+  }
+
+  .inputs-edit input {
+    width: 12.5vw;
+    height: 2.72vh;
+  }
+
+  .inputs_ {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .inputs_ input {
+    width: 12.5vw;
+    height: 2.72vh;
+  }
+
+  .editions {
+    width: 100%;
+    margin-top: 4.58%;
+  }
+
+  .edits {
+    width: 100%;
+    max-width: 592px;
+    margin: auto;
+  }
+}
