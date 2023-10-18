@@ -127,9 +127,9 @@ export default function Select() {
             <path
               d="M17.0625 7.86771L10.5 14.4241L3.9375 7.86771"
               stroke="#ED6D25"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </StyledSpan>

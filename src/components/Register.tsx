@@ -31,6 +31,9 @@ const Register = (): JSX.Element => {
   const [enteredCity, setEnteredCity] = useState("");
   const [enteredCityIsValid, setEnteredCityIsValid] = useState(true);
 
+  const [error, setError] = useState("");
+
+
   const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredEmail(event.target.value);
   };
@@ -78,49 +81,75 @@ const Register = (): JSX.Element => {
   };
 
   const submitFormHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+  
+    let isFormValid = true; 
+  
     if (!enteredEmail.includes("@") || enteredEmail.trim() === "") {
       setEnteredEmailIsValid(false);
-      event.preventDefault();
+      isFormValid = false;
     } else {
       setEnteredEmailIsValid(true);
     }
+  
     if (enteredPassword.trim().length < 8) {
       setEnteredPasswordIsValid(false);
-      event.preventDefault();
+      isFormValid = false;
     } else {
       setEnteredPasswordIsValid(true);
     }
+  
     if (enteredName.trim() === "") {
       setEnteredNameIsValid(false);
-      event.preventDefault();
+      isFormValid = false;
     } else {
       setEnteredNameIsValid(true);
     }
+  
     if (enteredDate.trim().length < 10) {
       setEnteredDateIsValid(false);
-      event.preventDefault();
+      isFormValid = false;
     } else {
       setEnteredDateIsValid(true);
     }
+  
     if (enteredProfession.trim() === "") {
       setEnteredProfessionIsValid(false);
-      event.preventDefault();
+      isFormValid = false;
     } else {
       setEnteredProfessionIsValid(true);
     }
+  
     if (enteredCountry.trim() === "") {
       setEnteredCountryIsValid(false);
-      event.preventDefault();
+      isFormValid = false;
     } else {
       setEnteredCountryIsValid(true);
     }
+  
     if (enteredCity.trim() === "") {
       setEnteredCityIsValid(false);
-      event.preventDefault();
+      isFormValid = false;
     } else {
       setEnteredCityIsValid(true);
     }
+  
+    if (isFormValid) {
+      const user = {
+        enteredEmail,
+        enteredPassword,
+        enteredName,
+        enteredDate,
+        enteredProfession,
+        enteredCountry,
+        enteredCity,
+      };
+  
+      console.log(user);
+  
+    }
   };
+  
 
   return (
     <React.Fragment>

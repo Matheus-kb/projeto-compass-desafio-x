@@ -16,9 +16,9 @@ const Expansive = () => {
             id="Vector"
             d="M13 5.99445L8 10.9898L3 5.99445"
             stroke="#ED6D25"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </g>
       </g>
