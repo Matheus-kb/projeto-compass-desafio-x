@@ -1,44 +1,57 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-import UolCircle from './Icons/UolCircle';
-import Card from './Card/Card';
-import Input from './StyledComponents/Input';
-import ButtonCreate from './StyledComponents/ButtonCreate';
-import ButtonCreateAlt from './StyledComponents/ButtonCreateAlt';
+import UolCircle from "./Icons/UolCircle";
+import Card from "./Card/Card";
+import Input from "./StyledComponents/Input";
+import ButtonCreate from "./StyledComponents/ButtonCreate";
+import ButtonCreateAlt from "./StyledComponents/ButtonCreateAlt";
 
-import './Form.css';
+import "./Form.css";
+import users from "../data/db.json";
 
 const Login = (): JSX.Element => {
-  const [enteredEmail, setEnteredEmail] = useState('');
+  const navegate = useNavigate();
+
+  const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(true);
 
-  const [enteredPassword, setEnteredPassword] = useState('');
+  const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredPasswordIsValid, setEnteredPasswordIsValid] = useState(true);
 
   const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredEmail(event.target.value);
+    setEnteredEmailIsValid(true);
   };
 
   const passwordChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setEnteredPassword(event.target.value);
+    setEnteredPasswordIsValid(true);
   };
 
-  const submitFormHandler = (event: React.FormEvent) => {
-    if (!enteredEmail.includes('@') || enteredEmail.trim() === '') {
+  const submitFormHandler = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!enteredEmail.includes("@") || enteredEmail.trim() === "") {
       setEnteredEmailIsValid(false);
-      event.preventDefault();
     }
 
-    if (enteredPassword.trim() === '' || enteredPassword.trim().length < 8) {
+    if (enteredPassword.trim() === "" || enteredPassword.trim().length < 8) {
       setEnteredPasswordIsValid(false);
-      event.preventDefault();
       return;
     }
-    setEnteredEmailIsValid(true);
-    setEnteredPasswordIsValid(true);
+
+    const user = users.users.find((user) => user.enteredEmail === enteredEmail);
+
+    if (user && user.enteredPassword === enteredPassword) {
+      navegate("/profile");
+    } else {
+      setEnteredEmailIsValid(false);
+      setEnteredPasswordIsValid(false);
+    }
   };
 
   return (
@@ -84,11 +97,9 @@ const Login = (): JSX.Element => {
               </label>
             </fieldset>
             <div className="form-actions">
-              <Link to="/profile">
-                <ButtonCreate type="submit" onClick={submitFormHandler}>
-                  Entrar na conta
-                </ButtonCreate>
-              </Link>
+              <ButtonCreate type="submit" onClick={submitFormHandler}>
+                Entrar na conta
+              </ButtonCreate>
               <Link to="/register">
                 <ButtonCreateAlt type="submit">Criar conta</ButtonCreateAlt>
               </Link>

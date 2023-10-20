@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "enteredEmail": "test1@gmail.com",
+      "enteredPassword": "12345678",
+      "enteredName": "test1",
+      "enteredDate": "01/01/2000",
+      "enteredProfession": "dev",
+      "enteredCountry": "brasil",
+      "enteredCity": "pelotas"
+    },
+    {
+      "id": 2,
+      "enteredEmail": "test2@gmail.com",
+      "enteredPassword": "12345678",
+      "enteredName": "test2",
+      "enteredDate": "02/02/2000",
+      "enteredProfession": "estudante",
+      "enteredCountry": "brasil",
+      "enteredCity": "rio grande"
+    },
+    {
+      "enteredEmail": "test@test.com",
+      "enteredPassword": "12345678",
+      "enteredName": "matheus",
+      "enteredDate": "11/11/1111",
+      "enteredProfession": "dev",
+      "enteredCountry": "br",
+      "enteredCity": "rs",
+      "id": 5
+    },
+    {
+      "enteredEmail": "test2@test.com",
+      "enteredPassword": "12345678",
+      "enteredName": "matheus",
+      "enteredDate": "11/11/1111",
+      "enteredProfession": "dev",
+      "enteredCountry": "brasil",
+      "enteredCity": "pel",
+      "id": 6
+    },
+    {
+      "email": "test@test.com",
+      "password": "12345678",
+      "id": 7
+    },
+    {
+      "email": "test1@gmail.com",
+      "password": "12345678",
+      "id": 8
+    },
+    {
+      "enteredEmail": "test1@gmail.com",
+      "enteredPassword": "12345678",
+      "id": 9
+    },
+    {
+      "enteredEmail": "test1@gmail.com",
+      "enteredPassword": "12345678",
+      "id": 10
+    },
+    {
+      "enteredEmail": "test1@gmail.com",
+      "enteredPassword": "12345678",
+      "id": 11
+    },
+    {
+      "enteredEmail": "test1@gmail.com",
+      "enteredPassword": "12345678",
+      "id": 12
+    },
+    {
+      "enteredEmail": "test1@gmail.com",
+      "enteredPassword": "12345678",
+      "id": 13
+    },
+    {
+      "enteredEmail": "test1@gmail.com",
+      "enteredPassword": "12345678",
+      "id": 14
+    }
+  ]
+}

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate   } from "react-router-dom";
 
 import UolCircle from "./Icons/UolCircle";
 import Card from "./Card/Card";
@@ -8,7 +8,25 @@ import ButtonCreate from "./StyledComponents/ButtonCreate";
 
 import "./Form.css";
 
+interface User {
+  id?: number;
+  enteredEmail: string;
+  enteredPassword: string;
+  enteredName: string;
+  enteredDate: string;
+  enteredProfession: string;
+  enteredCountry: string;
+  enteredCity: string;
+}
+
 const Register = (): JSX.Element => {
+  const navigate = useNavigate();
+
+  const baseUrl = "http://localhost:3000";
+  const usersUrl = `${baseUrl}/users`;
+
+  const [loadind, setLoading] = useState(false);
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(true);
 
@@ -30,9 +48,6 @@ const Register = (): JSX.Element => {
 
   const [enteredCity, setEnteredCity] = useState("");
   const [enteredCityIsValid, setEnteredCityIsValid] = useState(true);
-
-  const [error, setError] = useState("");
-
 
   const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredEmail(event.target.value);
@@ -80,62 +95,83 @@ const Register = (): JSX.Element => {
     setEnteredCity(event.target.value);
   };
 
-  const submitFormHandler = (event: React.FormEvent) => {
+  const submitFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
-  
-    let isFormValid = true; 
-  
+    let isFormValid = true;
+    setLoading(true);
+
+    if (!enteredEmailIsValid) {
+      isFormValid = false;
+    } else {
+      const existingUsers = await fetch(usersUrl).then((response) =>
+        response.json()
+      );
+
+      const emailAlreadyExists = existingUsers.some(
+        (user: User) => user.enteredEmail === enteredEmail
+      );
+
+      if (emailAlreadyExists) {
+        setEnteredEmailIsValid(false);
+        isFormValid = false;
+      } else {
+        setEnteredEmailIsValid(true);
+      }
+    }
+
     if (!enteredEmail.includes("@") || enteredEmail.trim() === "") {
       setEnteredEmailIsValid(false);
       isFormValid = false;
     } else {
       setEnteredEmailIsValid(true);
     }
-  
+
     if (enteredPassword.trim().length < 8) {
       setEnteredPasswordIsValid(false);
       isFormValid = false;
     } else {
       setEnteredPasswordIsValid(true);
     }
-  
+
     if (enteredName.trim() === "") {
       setEnteredNameIsValid(false);
       isFormValid = false;
     } else {
       setEnteredNameIsValid(true);
     }
-  
+
     if (enteredDate.trim().length < 10) {
       setEnteredDateIsValid(false);
       isFormValid = false;
     } else {
       setEnteredDateIsValid(true);
     }
-  
+
     if (enteredProfession.trim() === "") {
       setEnteredProfessionIsValid(false);
       isFormValid = false;
     } else {
       setEnteredProfessionIsValid(true);
     }
-  
+
     if (enteredCountry.trim() === "") {
       setEnteredCountryIsValid(false);
       isFormValid = false;
     } else {
       setEnteredCountryIsValid(true);
     }
-  
+
     if (enteredCity.trim() === "") {
       setEnteredCityIsValid(false);
       isFormValid = false;
     } else {
       setEnteredCityIsValid(true);
     }
+
   
+
     if (isFormValid) {
-      const user = {
+      const user: User = {
         enteredEmail,
         enteredPassword,
         enteredName,
@@ -144,12 +180,31 @@ const Register = (): JSX.Element => {
         enteredCountry,
         enteredCity,
       };
-  
+
       console.log(user);
-  
+
+      const res = await fetch(usersUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      console.log(res);
+
+      setEnteredEmail("");
+      setEnteredPassword("");
+      setEnteredName("");
+      setEnteredDate("");
+      setEnteredProfession("");
+      setEnteredCountry("");
+      setEnteredCity("");
+
+      navigate("/second-register");
     }
+
+    setLoading(false);
   };
-  
 
   return (
     <React.Fragment>
@@ -246,11 +301,14 @@ const Register = (): JSX.Element => {
               {!enteredCityIsValid && (
                 <p className="invalid-input">Cidade Inválida</p>
               )}
-              <Link to="/second-register">
-                <ButtonCreate type="submit" onClick={submitFormHandler}>
-                  Criar conta
-                </ButtonCreate>
-              </Link>
+
+                {!loadind && (
+                  <ButtonCreate type="submit" onClick={submitFormHandler}>
+                    Criar conta
+                  </ButtonCreate>
+                )}
+                {loadind && <ButtonCreate disabled>Aguarde...</ButtonCreate>}
+              
             </div>
           </form>
         </Card>
