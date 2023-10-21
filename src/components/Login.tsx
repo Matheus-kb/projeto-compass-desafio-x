@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { api } from "../config/api";
 
 import UolCircle from "./Icons/UolCircle";
 import Card from "./Card/Card";
@@ -9,10 +9,11 @@ import ButtonCreate from "./StyledComponents/ButtonCreate";
 import ButtonCreateAlt from "./StyledComponents/ButtonCreateAlt";
 
 import "./Form.css";
-import users from "../data/db.json";
+import { UserContext } from "../context/userContext";
 
 const Login = (): JSX.Element => {
-  const navegate = useNavigate();
+  const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(true);
@@ -44,14 +45,20 @@ const Login = (): JSX.Element => {
       return;
     }
 
-    const user = users.users.find((user) => user.enteredEmail === enteredEmail);
-
-    if (user && user.enteredPassword === enteredPassword) {
-      navegate("/profile");
-    } else {
-      setEnteredEmailIsValid(false);
-      setEnteredPasswordIsValid(false);
+    try {
+      const response = await api.post('/login',{'email':enteredEmail, 'password':enteredPassword})
+      if (response.status === 200){
+        localStorage.setItem('token', response.data.accessToken)
+        setUser(response.data.user)
+       navigate("/profile")
+        console.log(response);
+      } else {
+        console.log(response);
+      }
+    } catch (error) {
+      
     }
+
   };
 
   return (

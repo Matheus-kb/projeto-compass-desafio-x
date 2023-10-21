@@ -1,84 +1,44 @@
 {
   "users": [
     {
-      "id": 1,
-      "enteredEmail": "test1@gmail.com",
-      "enteredPassword": "12345678",
-      "enteredName": "test1",
-      "enteredDate": "01/01/2000",
+      "email": "test@test.com",
+      "password": "$2a$10$84VB1eWfELd1ZZ61tirRDeyzFCcWJHP6HtR2F0DASsQr7GjaxL2vC",
+      "enteredName": "matheus",
+      "enteredDate": "22/03/2003",
       "enteredProfession": "dev",
       "enteredCountry": "brasil",
-      "enteredCity": "pelotas"
+      "enteredCity": "pelotas",
+      "id": 3
     },
     {
-      "id": 2,
-      "enteredEmail": "test2@gmail.com",
-      "enteredPassword": "12345678",
-      "enteredName": "test2",
-      "enteredDate": "02/02/2000",
-      "enteredProfession": "estudante",
+      "email": "test2@gmail.com",
+      "password": "$2a$10$76gubSj9mu0.VudC2CHYh.HXOImxB8WS6KPhzocnT/kBOAIW0s06O",
+      "enteredName": "julia",
+      "enteredDate": "22/03/2003",
+      "enteredProfession": "dev",
       "enteredCountry": "brasil",
-      "enteredCity": "rio grande"
+      "enteredCity": "pelotas",
+      "id": 4
     },
     {
-      "enteredEmail": "test@test.com",
-      "enteredPassword": "12345678",
-      "enteredName": "matheus",
+      "email": "test1@test.com",
+      "password": "$2a$10$gthjv9D6OpGe4.vZDUd3NuXzitq4ZBHG61/doHQZ7I0Cx9VW4uvsm",
+      "enteredName": "jfvnkjv",
       "enteredDate": "11/11/1111",
       "enteredProfession": "dev",
-      "enteredCountry": "br",
-      "enteredCity": "rs",
+      "enteredCountry": "brasil",
+      "enteredCity": "pelotas",
       "id": 5
     },
     {
-      "enteredEmail": "test2@test.com",
-      "enteredPassword": "12345678",
+      "email": "test2@test.com",
+      "password": "$2a$10$IUmPU.b3RFCk8ZE9eKKBUe5lFhnUYCQV9BECHXhOqy5gAFc1kqvJG",
       "enteredName": "matheus",
-      "enteredDate": "11/11/1111",
+      "enteredDate": "22/03/2003",
       "enteredProfession": "dev",
       "enteredCountry": "brasil",
-      "enteredCity": "pel",
+      "enteredCity": "pelotas",
       "id": 6
-    },
-    {
-      "email": "test@test.com",
-      "password": "12345678",
-      "id": 7
-    },
-    {
-      "email": "test1@gmail.com",
-      "password": "12345678",
-      "id": 8
-    },
-    {
-      "enteredEmail": "test1@gmail.com",
-      "enteredPassword": "12345678",
-      "id": 9
-    },
-    {
-      "enteredEmail": "test1@gmail.com",
-      "enteredPassword": "12345678",
-      "id": 10
-    },
-    {
-      "enteredEmail": "test1@gmail.com",
-      "enteredPassword": "12345678",
-      "id": 11
-    },
-    {
-      "enteredEmail": "test1@gmail.com",
-      "enteredPassword": "12345678",
-      "id": 12
-    },
-    {
-      "enteredEmail": "test1@gmail.com",
-      "enteredPassword": "12345678",
-      "id": 13
-    },
-    {
-      "enteredEmail": "test1@gmail.com",
-      "enteredPassword": "12345678",
-      "id": 14
     }
   ]
 }

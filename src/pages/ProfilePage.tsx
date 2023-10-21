@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Card from '../components/Card/Card';
 import HeaderProfile from '../components/Header/HeaderProfile';
 import InfoProfile from '../components/InfoProfile/InfoProfile';
+import { UserInfos } from '../context/userInfos';
 
 import ProfilePhoto from '../assets/images/profile-img.png';
 
@@ -11,6 +12,11 @@ import Communities from '../components/InfoProfile/Communities/Communities';
 
 type Props = {};
 const ProfilePage = (props: Props): JSX.Element => {
+
+  const {user} = UserInfos()
+  console.log(user);
+  
+
   return (
     <div>
       <HeaderProfile />
@@ -25,7 +31,7 @@ const ProfilePage = (props: Props): JSX.Element => {
         <div className="box-left-profile">
           <Card classNameCard="profile-photo">
             <img src={ProfilePhoto} alt="foto de perfil" />
-            <p className="name-profile">Linus Torvalds</p>
+            <p className="name-profile">{user?.enteredName}</p>
             <p className="status-profile">Casado, Estados Unidos</p>
           </Card>
           <Link to="/profile/edit-information">

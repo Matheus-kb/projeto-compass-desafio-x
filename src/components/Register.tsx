@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate   } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useNavigate   } from "react-router-dom";
 
 import UolCircle from "./Icons/UolCircle";
 import Card from "./Card/Card";
@@ -7,11 +7,13 @@ import Input from "./StyledComponents/Input";
 import ButtonCreate from "./StyledComponents/ButtonCreate";
 
 import "./Form.css";
+import { api } from "../config/api";
+import { UserContext } from "../context/userContext";
 
 interface User {
   id?: number;
-  enteredEmail: string;
-  enteredPassword: string;
+  email: string;
+  password: string;
   enteredName: string;
   enteredDate: string;
   enteredProfession: string;
@@ -21,6 +23,7 @@ interface User {
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const baseUrl = "http://localhost:3000";
   const usersUrl = `${baseUrl}/users`;
@@ -108,7 +111,7 @@ const Register = (): JSX.Element => {
       );
 
       const emailAlreadyExists = existingUsers.some(
-        (user: User) => user.enteredEmail === enteredEmail
+        (user: User) => user.email === enteredEmail
       );
 
       if (emailAlreadyExists) {
@@ -172,8 +175,8 @@ const Register = (): JSX.Element => {
 
     if (isFormValid) {
       const user: User = {
-        enteredEmail,
-        enteredPassword,
+        email: enteredEmail,
+        password: enteredPassword,
         enteredName,
         enteredDate,
         enteredProfession,
@@ -183,24 +186,28 @@ const Register = (): JSX.Element => {
 
       console.log(user);
 
-      const res = await fetch(usersUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      console.log(res);
+      try {
+        const response = await api.post('/users',user)
+        if (response.status === 200){
+          localStorage.setItem('token', response.data.accessToken)
+          setUser(response.data.user)
+         navigate("/")
+          console.log(response);
+        } else {
+          console.log(response);
+        }
+      } catch (error) {
+      }
 
-      setEnteredEmail("");
-      setEnteredPassword("");
-      setEnteredName("");
-      setEnteredDate("");
-      setEnteredProfession("");
-      setEnteredCountry("");
-      setEnteredCity("");
+      // setEnteredEmail("");
+      // setEnteredPassword("");
+      // setEnteredName("");
+      // setEnteredDate("");
+      // setEnteredProfession("");
+      // setEnteredCountry("");
+      // setEnteredCity("");
 
-      navigate("/second-register");
+      // navigate("/second-register");
     }
 
     setLoading(false);
