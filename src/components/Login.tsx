@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import { api } from "../config/api";
 
 import UolCircle from "./Icons/UolCircle";
@@ -49,14 +50,15 @@ const Login = (): JSX.Element => {
       const response = await api.post('/login',{'email':enteredEmail, 'password':enteredPassword})
       if (response.status === 200){
         localStorage.setItem('token', response.data.accessToken)
+        localStorage.setItem('userData', JSON.stringify(response.data.user));
         setUser(response.data.user)
        navigate("/profile")
-        console.log(response);
+        console.log(response.data);
       } else {
-        console.log(response);
+        toast.error("Erro: Credencias inseridas são invalidas.");
       }
     } catch (error) {
-      
+      toast.error("Erro: Tente novamente mais tarde.")
     }
 
   };

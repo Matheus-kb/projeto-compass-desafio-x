@@ -28,9 +28,6 @@ const Register = (): JSX.Element => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
-  const baseUrl = "http://localhost:3000";
-  const usersUrl = `${baseUrl}/users`;
-
   const [loadind, setLoading] = useState(false);
 
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -172,7 +169,8 @@ const Register = (): JSX.Element => {
           .then((response) => {
             setUser(response.data.user);
             localStorage.setItem("token", response.data.accessToken);
-            console.log(response);
+            localStorage.setItem('userData', JSON.stringify(response.data.user));
+            console.log(response.data);
             navigate("/profile")
           })
           .catch((error) => {

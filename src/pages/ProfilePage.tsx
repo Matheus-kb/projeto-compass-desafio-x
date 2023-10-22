@@ -1,18 +1,49 @@
-import { Link } from 'react-router-dom';
-import Card from '../components/Card/Card';
-import HeaderProfile from '../components/Header/HeaderProfile';
-import InfoProfile from '../components/InfoProfile/InfoProfile';
-import { UserInfos } from '../context/userInfos';
+import { useContext, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import Card from "../components/Card/Card";
+import HeaderProfile from "../components/Header/HeaderProfile";
+import InfoProfile from "../components/InfoProfile/InfoProfile";
+import { UserInfos } from "../context/userInfos";
+import "./ProfilePage.css";
 
-import ProfilePhoto from '../assets/images/profile-img.png';
 
-import './ProfilePage.css';
-import Friends from '../components/InfoProfile/Friends/Friends';
-import Communities from '../components/InfoProfile/Communities/Communities';
+import ProfilePhoto from "../assets/images/profile-img.png";
+import Friends from "../components/InfoProfile/Friends/Friends";
+import Communities from "../components/InfoProfile/Communities/Communities";
+import { UserContext } from "../context/userContext";
 
 type Props = {};
 const ProfilePage = (props: Props): JSX.Element => {
-  const {user} = UserInfos()
+  const { setUser } = useContext(UserContext);
+  const { user } = UserInfos();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isTokenValid = async () => {
+      const token = await localStorage.getItem("token");
+      return token !== null;
+    };
+
+    if (!isTokenValid()) {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const user = JSON.parse(userData);
+      setUser(user);
+    } else {
+      navigate('/');
+    }
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    return <Navigate to="/login" />;
+  };
 
   return (
     <div>

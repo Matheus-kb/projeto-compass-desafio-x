@@ -3,11 +3,11 @@
     {
       "email": "test@test.com",
       "password": "$2a$10$mtiioXGt9CrqrcGDGjPlneKdJ8Ji68dQVizN7TBcDnIMY1qPncuh.",
-      "enteredName": "matheus",
+      "enteredName": "Matheus",
       "enteredDate": "22/03/2003",
-      "enteredProfession": "dev",
-      "enteredCountry": "brasil",
-      "enteredCity": "pelotas",
+      "enteredProfession": "Dev",
+      "enteredCountry": "Brasil",
+      "enteredCity": "Pelotas",
       "id": 1
     },
     {
@@ -29,6 +29,16 @@
       "enteredCountry": "Brasil",
       "enteredCity": "Pelotas - Sitio Floresta",
       "id": 3
+    },
+    {
+      "email": "test3@test.com",
+      "password": "$2a$10$F3FQhFcG/LunCK5IZ0UXY.L1vUGh0cRhAlgUyBLS5zFqpqv5QPhwm",
+      "enteredName": "burak",
+      "enteredDate": "22/03/2003",
+      "enteredProfession": "Estudante",
+      "enteredCountry": "Brasil",
+      "enteredCity": "Pelotas",
+      "id": 4
     }
   ]
 }
