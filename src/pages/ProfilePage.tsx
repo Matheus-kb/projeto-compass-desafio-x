@@ -12,10 +12,7 @@ import Communities from '../components/InfoProfile/Communities/Communities';
 
 type Props = {};
 const ProfilePage = (props: Props): JSX.Element => {
-
   const {user} = UserInfos()
-  console.log(user);
-  
 
   return (
     <div>
@@ -32,7 +29,7 @@ const ProfilePage = (props: Props): JSX.Element => {
           <Card classNameCard="profile-photo">
             <img src={ProfilePhoto} alt="foto de perfil" />
             <p className="name-profile">{user?.enteredName}</p>
-            <p className="status-profile">Casado, Estados Unidos</p>
+            <p className="status-profile">Casado,{user?.enteredCountry} </p>
           </Card>
           <Link to="/profile/edit-information">
             <Card classNameCard="edit-profile">

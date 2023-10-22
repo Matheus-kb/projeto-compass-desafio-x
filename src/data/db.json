@@ -2,43 +2,33 @@
   "users": [
     {
       "email": "test@test.com",
-      "password": "$2a$10$84VB1eWfELd1ZZ61tirRDeyzFCcWJHP6HtR2F0DASsQr7GjaxL2vC",
+      "password": "$2a$10$mtiioXGt9CrqrcGDGjPlneKdJ8Ji68dQVizN7TBcDnIMY1qPncuh.",
       "enteredName": "matheus",
       "enteredDate": "22/03/2003",
       "enteredProfession": "dev",
       "enteredCountry": "brasil",
       "enteredCity": "pelotas",
-      "id": 3
+      "id": 1
     },
     {
-      "email": "test2@gmail.com",
-      "password": "$2a$10$76gubSj9mu0.VudC2CHYh.HXOImxB8WS6KPhzocnT/kBOAIW0s06O",
+      "email": "test1@test.com",
+      "password": "$2a$10$At3d9SlkXZxDeWZce69YveNQJSoFRWKHxQTSU5p1QetIZi6kCp8cm",
       "enteredName": "julia",
       "enteredDate": "22/03/2003",
       "enteredProfession": "dev",
       "enteredCountry": "brasil",
       "enteredCity": "pelotas",
-      "id": 4
-    },
-    {
-      "email": "test1@test.com",
-      "password": "$2a$10$gthjv9D6OpGe4.vZDUd3NuXzitq4ZBHG61/doHQZ7I0Cx9VW4uvsm",
-      "enteredName": "jfvnkjv",
-      "enteredDate": "11/11/1111",
-      "enteredProfession": "dev",
-      "enteredCountry": "brasil",
-      "enteredCity": "pelotas",
-      "id": 5
+      "id": 2
     },
     {
       "email": "test2@test.com",
-      "password": "$2a$10$IUmPU.b3RFCk8ZE9eKKBUe5lFhnUYCQV9BECHXhOqy5gAFc1kqvJG",
-      "enteredName": "matheus",
-      "enteredDate": "22/03/2003",
-      "enteredProfession": "dev",
-      "enteredCountry": "brasil",
-      "enteredCity": "pelotas",
-      "id": 6
+      "password": "$2a$10$dwfw7ZZhu168ec.MXKDEBuYYxDWdt75WKzaBcYQciNgTgpegOQ39q",
+      "enteredName": "João Gabs",
+      "enteredDate": "03/12/2011",
+      "enteredProfession": "Estudante",
+      "enteredCountry": "Brasil",
+      "enteredCity": "Pelotas - Sitio Floresta",
+      "id": 3
     }
   ]
 }

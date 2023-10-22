@@ -7,14 +7,32 @@ import Star from '../Icons/emojis/Star';
 import Smiley from '../Icons/emojis/Smiley';
 import ThumbsUp from '../Icons/emojis/ThumbsUp';
 import Sexy from '../Icons/emojis/Sexy';
-
 import Triangle from '../../assets/images/triangle.png';
 import { Link } from 'react-router-dom';
 
+import { UserInfos } from '../../context/userInfos';
+
 const InfoProfile = (): JSX.Element => {
+  const {user} = UserInfos()
+
+  const calculateAge = (birthdate: any) => {
+    const birthDate = new Date(birthdate);
+    const currentDate = new Date();
+    const age = currentDate.getFullYear() - birthDate.getFullYear();
+
+    if (
+      currentDate.getMonth() < birthDate.getMonth() ||
+      (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
+    ) {
+      return age - 1;
+    } else {
+      return age;
+    }
+  };
+
   return (
     <Card classNameCard="card-profile-info">
-      <h3 className="title-info-profile">Boa tarde, Linus Torvalds</h3>
+      <h3 className="title-info-profile">Boa tarde, {user?.enteredName}</h3>
       <div className="quote">
         <div className="triangle">
           <img src={Triangle} alt="apontamento" />
@@ -61,27 +79,27 @@ const InfoProfile = (): JSX.Element => {
         </dl>
         <dl className="info-status">
           <dt>Aniversário:</dt>
-          <dd>21 de julho</dd>
+          <dd>{user?.enteredDate}</dd>
         </dl>
         <dl className="info-status">
           <dt>Idade:</dt>
-          <dd>22</dd>
+          <dd>{calculateAge(user?.enteredDate)}</dd>
         </dl>
         <dl className="info-status">
           <dt>Quem sou eu:</dt>
-          <dd>Programador</dd>
+          <dd>{user?.enteredProfession}</dd>
         </dl>
         <dl className="info-status">
           <dt>Moro:</dt>
-          <dd>São Paulo</dd>
+          <dd>{user?.enteredCity}</dd>
         </dl>
         <dl className="info-status">
           <dt>País:</dt>
-          <dd>Brasil</dd>
+          <dd>{user?.enteredCountry}</dd>
         </dl>
         <dl className="info-status">
           <dt>Cidade:</dt>
-          <dd>São Paulo</dd>
+          <dd>{user?.enteredCity}</dd>
         </dl>
       </div>
       <div className="box-tags">

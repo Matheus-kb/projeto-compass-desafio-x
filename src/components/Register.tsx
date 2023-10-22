@@ -1,5 +1,8 @@
 import React, { useContext, useState } from "react";
-import { useNavigate   } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { AxiosError } from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 import UolCircle from "./Icons/UolCircle";
 import Card from "./Card/Card";
@@ -103,25 +106,6 @@ const Register = (): JSX.Element => {
     let isFormValid = true;
     setLoading(true);
 
-    if (!enteredEmailIsValid) {
-      isFormValid = false;
-    } else {
-      const existingUsers = await fetch(usersUrl).then((response) =>
-        response.json()
-      );
-
-      const emailAlreadyExists = existingUsers.some(
-        (user: User) => user.email === enteredEmail
-      );
-
-      if (emailAlreadyExists) {
-        setEnteredEmailIsValid(false);
-        isFormValid = false;
-      } else {
-        setEnteredEmailIsValid(true);
-      }
-    }
-
     if (!enteredEmail.includes("@") || enteredEmail.trim() === "") {
       setEnteredEmailIsValid(false);
       isFormValid = false;
@@ -171,8 +155,6 @@ const Register = (): JSX.Element => {
       setEnteredCityIsValid(true);
     }
 
-  
-
     if (isFormValid) {
       const user: User = {
         email: enteredEmail,
@@ -184,30 +166,21 @@ const Register = (): JSX.Element => {
         enteredCity,
       };
 
-      console.log(user);
-
       try {
-        const response = await api.post('/users',user)
-        if (response.status === 200){
-          localStorage.setItem('token', response.data.accessToken)
-          setUser(response.data.user)
-         navigate("/")
-          console.log(response);
-        } else {
-          console.log(response);
-        }
-      } catch (error) {
+        await api
+          .post("/users", user)
+          .then((response) => {
+            setUser(response.data.user);
+            localStorage.setItem("token", response.data.accessToken);
+            console.log(response);
+            navigate("/profile")
+          })
+          .catch((error) => {
+            toast.error("Email já cadastrado.");
+          });
+      } catch (error: AxiosError | any) {
+        toast.error("Erro: Tente novamente mais tarde.");
       }
-
-      // setEnteredEmail("");
-      // setEnteredPassword("");
-      // setEnteredName("");
-      // setEnteredDate("");
-      // setEnteredProfession("");
-      // setEnteredCountry("");
-      // setEnteredCity("");
-
-      // navigate("/second-register");
     }
 
     setLoading(false);
@@ -215,6 +188,7 @@ const Register = (): JSX.Element => {
 
   return (
     <React.Fragment>
+      <Toaster/>
       <section className="register create">
         <div className="image">
           <p>
@@ -234,6 +208,7 @@ const Register = (): JSX.Element => {
                 id="email"
                 placeholder="E-mail"
                 value={enteredEmail}
+                required
                 onChange={emailChangeHandler}
               />
               {!enteredEmailIsValid && (
@@ -309,13 +284,12 @@ const Register = (): JSX.Element => {
                 <p className="invalid-input">Cidade Inválida</p>
               )}
 
-                {!loadind && (
-                  <ButtonCreate type="submit" onClick={submitFormHandler}>
-                    Criar conta
-                  </ButtonCreate>
-                )}
-                {loadind && <ButtonCreate disabled>Aguarde...</ButtonCreate>}
-              
+              {!loadind && (
+                <ButtonCreate type="submit" onClick={submitFormHandler}>
+                  Criar conta
+                </ButtonCreate>
+              )}
+              {loadind && <ButtonCreate disabled>Aguarde...</ButtonCreate>}
             </div>
           </form>
         </Card>
