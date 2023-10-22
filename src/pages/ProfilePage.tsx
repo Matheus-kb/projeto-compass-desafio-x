@@ -42,12 +42,12 @@ const ProfilePage = (props: Props): JSX.Element => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
-    return <Navigate to="/login" />;
+    navigate('/')
   };
 
   return (
     <div>
-      <HeaderProfile />
+      <HeaderProfile logout={logout} />
       <div className="content-profile">
         <div className="search-mobile">
           <input

@@ -4,7 +4,11 @@ import './HeaderProfile.css';
 import Expansive from '../Icons/Expansive';
 import ProfileImg from '../../assets/images/profile-img.png';
 
-const HeaderProfile = (): JSX.Element => {
+const HeaderProfile = (props:any): JSX.Element => {
+  const handleLogout = () => {
+    props.logout();
+  };
+
   return (
     <header id="header-profile">
       <div className="content-header-profile">
@@ -34,6 +38,7 @@ const HeaderProfile = (): JSX.Element => {
               src={ProfileImg}
               alt="Foto de perfil"
               className="profile-img"
+              onClick={handleLogout}
             />
             <p>Linus Torvalds</p>
             <Expansive />
