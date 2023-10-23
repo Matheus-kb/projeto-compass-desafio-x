@@ -47,24 +47,26 @@ const Login = (): JSX.Element => {
     }
 
     try {
-      const response = await api.post('/login',{'email':enteredEmail, 'password':enteredPassword})
-      if (response.status === 200){
-        localStorage.setItem('token', response.data.accessToken)
-        localStorage.setItem('userData', JSON.stringify(response.data.user));
-        setUser(response.data.user)
-       navigate("/profile")
-        console.log(response.data);
+      const response = await api.post("/login", {
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem("userData", JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        navigate("/profile");
       } else {
         toast.error("Erro: Credencias inseridas são invalidas.");
       }
     } catch (error) {
-      toast.error("Erro: Tente novamente mais tarde.")
+      toast.error("Erro: Verifique suas credencias, ou tente novamente mais tarde.");
     }
-
   };
 
   return (
     <section className="register">
+      <Toaster />
       <div className="image">
         <p>
           Conecta-se aos seus amigos e familiares usando recados e mensagens
@@ -96,7 +98,7 @@ const Login = (): JSX.Element => {
               onChange={passwordChangeHandler}
             />
             {!enteredPasswordIsValid && (
-              <p className="invalid-input">Senha inválida</p>
+              <p className="invalid-input">Senha inválida: min 8 caracteres</p>
             )}
             <fieldset className="checkbox__login">
               <label className="checkbox-field">

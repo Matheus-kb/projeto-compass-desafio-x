@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../components/Card/Card";
 import HeaderProfile from "../components/Header/HeaderProfile";
 import InfoProfile from "../components/InfoProfile/InfoProfile";
@@ -27,7 +27,7 @@ const ProfilePage = (props: Props): JSX.Element => {
     if (!isTokenValid()) {
       navigate("/");
     }
-  }, []);
+  },[]);
 
   useEffect(() => {
     const userData = localStorage.getItem('userData');
@@ -37,7 +37,7 @@ const ProfilePage = (props: Props): JSX.Element => {
     } else {
       navigate('/');
     }
-  }, []);
+  },[]);
 
   const logout = () => {
     localStorage.removeItem("token");

@@ -1,13 +1,13 @@
 {
   "users": [
     {
-      "email": "test@test.com",
-      "password": "$2a$10$mtiioXGt9CrqrcGDGjPlneKdJ8Ji68dQVizN7TBcDnIMY1qPncuh.",
-      "enteredName": "Matheus",
+      "enteredProfession": "Estudante",
+      "enteredName": "matheus",
       "enteredDate": "22/03/2003",
-      "enteredProfession": "Dev",
       "enteredCountry": "Brasil",
-      "enteredCity": "Pelotas",
+      "enteredCity": "pelotas",
+      "password": "$2a$10$2u9amLmHUqrD/7mcXWIMmOyRR6fcEM73YanCZ8t/dviheqc6N/g8G",
+      "email": "test@test.com",
       "id": 1
     },
     {

@@ -1,3 +1,11 @@
+.invalid-input {
+  color: var(--primary-color);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .header-card-edit {
   text-align: center;
 }
