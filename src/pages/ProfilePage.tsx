@@ -26,7 +26,7 @@ const ProfilePage = (props: Props): JSX.Element => {
       }
     };
     checkToken();
-  }, []);
+  }, []); 
   
 
   useEffect(() => {

@@ -1,13 +1,19 @@
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom';
-
 import './HeaderProfile.css';
 import Expansive from '../Icons/Expansive';
 import ProfileImg from '../../assets/images/profile-img.png';
+import { UserContext } from '../../context/userContext';
+import { UserInfos } from '../../context/userInfos';
 
 const HeaderProfile = (props:any): JSX.Element => {
+  const { setUser } = useContext(UserContext);
+  const { user } = UserInfos();
+
+
   const handleLogout = () => {
     props.logout();
-  };
+  }; 
 
   return (
     <header id="header-profile">
@@ -40,7 +46,7 @@ const HeaderProfile = (props:any): JSX.Element => {
               className="profile-img"
               onClick={handleLogout}
             />
-            <p>Linus Torvalds</p>
+            <p>{user?.enteredName}</p>
             <Expansive />
           </div>
         </div>
