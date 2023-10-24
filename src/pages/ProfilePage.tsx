@@ -60,7 +60,7 @@ const ProfilePage = (props: Props): JSX.Element => {
           <Card classNameCard="profile-photo">
             <img src={ProfilePhoto} alt="foto de perfil" />
             <p className="name-profile">{user?.enteredName}</p>
-            <p className="status-profile">Casado,{user?.enteredCountry} </p>
+            <p className="status-profile">{user?.relationship}, {user?.enteredCountry} </p>
           </Card>
           <Link to="/profile/edit-information">
             <Card classNameCard="edit-profile">

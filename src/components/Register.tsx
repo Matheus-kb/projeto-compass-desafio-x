@@ -10,6 +10,7 @@ import Card from "./Card/Card";
 import Input from "./StyledComponents/Input";
 import ButtonCreate from "./StyledComponents/ButtonCreate";
 import "./Form.css";
+import SelectEdit from "./StyledComponents/SelectEdit";
 
 interface User {
   id?: number;
@@ -20,6 +21,7 @@ interface User {
   enteredProfession: string;
   enteredCountry: string;
   enteredCity: string;
+  relationship: string;
 }
 
 const Register = (): JSX.Element => {
@@ -49,6 +51,13 @@ const Register = (): JSX.Element => {
 
   const [enteredCity, setEnteredCity] = useState("");
   const [enteredCityIsValid, setEnteredCityIsValid] = useState(true);
+
+  const [relationship, setRelationship] = useState<string>('Relacionamento');
+
+  const handleOptionChange = (option: string) => {
+    setRelationship(option);
+  };
+
 
   const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredEmail(event.target.value);
@@ -159,6 +168,8 @@ const Register = (): JSX.Element => {
         enteredProfession,
         enteredCountry,
         enteredCity,
+        relationship,
+        
       };
 
       try {
@@ -172,6 +183,8 @@ const Register = (): JSX.Element => {
           })
           .catch((error) => {
             toast.error("Email já cadastrado.");
+            console.log(error.message);
+            
           });
       } catch (error: AxiosError | any) {
         toast.error("Erro: Tente novamente mais tarde.");
@@ -264,6 +277,7 @@ const Register = (): JSX.Element => {
                   onChange={cityChangeHandler}
                 />
               </div>
+              <SelectEdit selectOptionRegister={relationship} onOptionChange={handleOptionChange} />
             </div>
             <div className="form-actions">
               {!enteredDateIsValid && (

@@ -8,6 +8,7 @@ interface UserType {
       enteredProfession: string ,
       enteredCountry: string ,
       enteredCity: string ,
+      relationship: string,
       id: number 
     }
 

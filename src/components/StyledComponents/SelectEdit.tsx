@@ -27,18 +27,23 @@ const StyledSelect = styled.div`
   @media (min-width: 768px) {
     font-size: 16px;
   }
+
+
+  @media (min-width: 1440px) {
+    max-width: 34px;
+  }
 `;
 
 const StyledDiv = styled.div`
   width: 100%;
   position: relative;
   @media (min-width: 1200px) and (max-width: 1439px) {
-    width: 11.6vw;
+    width: 23.5vw;
   }
 
   @media (min-width: 1440px) {
-    width: 8.5vw;
-    max-width: 155px;
+    width: 18.5vw;
+    max-width: 350px;
   }
 `;
 
@@ -80,9 +85,13 @@ const StyledSpan = styled.span`
   right: 7px;
 `;
 
-export default function SelectEdit() {
+type SelectEditProps = {
+  selectOptionRegister: string | undefined;
+  onOptionChange: (option: string) => void;
+};
+
+export default function SelectEdit(props: SelectEditProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('Relacionamento');
 
   const options = [
     'Solteiro',
@@ -96,15 +105,15 @@ export default function SelectEdit() {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (option: React.SetStateAction<string>) => {
-    setSelectedOption(option);
+  const handleOptionClick = (option: string) => {
+    props.onOptionChange(option);
     setIsOpen(false);
   };
 
   return (
     <StyledDiv>
       <StyledSelect onClick={handleOptions}>
-        {selectedOption}
+        {props.selectOptionRegister}
         <StyledSpan>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +138,9 @@ export default function SelectEdit() {
           {options.map((option, index) => (
             <StyledOption
               key={option}
-              onClick={() => handleOptionClick(option)}
+              onClick={() => {
+                handleOptionClick(option);
+              }}
               style={{
                 borderBottom:
                   index === options.length - 1 ? 'none' : '1px solid #ed6d25'

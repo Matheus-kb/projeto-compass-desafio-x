@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import UolCircle from './Icons/UolCircle';
 import Card from './Card/Card';
@@ -11,6 +11,12 @@ import './Form.css';
 import { Link } from 'react-router-dom';
 
 const SecondForm = (): JSX.Element => {
+  const [relationship, setRelationship] = useState<string>('Relacionamento');
+
+  const handleOptionChange = (option: string) => {
+    setRelationship(option);
+  };
+
   const submitFormHandler = (event: React.FormEvent) => {
     event.preventDefault();
   };
@@ -36,7 +42,7 @@ const SecondForm = (): JSX.Element => {
                 <TextArea id="interests" placeholder="Interesses" />
               </div>
               <div className="input__checkbox">
-                <SelectEdit />
+                <SelectEdit selectOptionRegister={relationship} onOptionChange={handleOptionChange}/>
                 <Input type="number" id="kids" placeholder="Filhos" />
               </div>
               <Input

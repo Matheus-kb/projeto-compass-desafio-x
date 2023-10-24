@@ -52,6 +52,11 @@ const EditInformation = (): JSX.Element => {
   const [enteredProfession, setEnteredProfession] = useState("");
   const [enteredCountry, setEnteredCountry] = useState("");
   const [enteredCity, setEnteredCity] = useState("");
+  const [relationship, setRelationship] = useState<string>('Relacionamento');
+
+  const handleOptionChange = (option: string) => {
+    setRelationship(option);
+  };
 
   const passwordChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -152,6 +157,7 @@ const EditInformation = (): JSX.Element => {
               enteredDate,
               enteredCountry,
               enteredCity,
+              relationship,
               password: enteredPasswordTwo,
               email: user?.email,
             },
@@ -206,7 +212,7 @@ const EditInformation = (): JSX.Element => {
                     value={enteredProfession}
                     onChange={professionChangeHandler}
                   />
-                  <Select />
+                  <Select selectOptionRegister={relationship} onOptionChange={handleOptionChange}/>
                 </div>
                 <div className="inputs_">
                   <Input

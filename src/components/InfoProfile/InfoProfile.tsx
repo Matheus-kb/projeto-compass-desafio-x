@@ -66,7 +66,7 @@ const InfoProfile = (): JSX.Element => {
       <div className="infos-profiles">
         <dl className="info-status">
           <dt>Relacionamento:</dt>
-          <dd>Solteiro</dd>
+          <dd>{user?.relationship}</dd>
         </dl>
         <dl className="info-status">
           <dt>Aniversário:</dt>
