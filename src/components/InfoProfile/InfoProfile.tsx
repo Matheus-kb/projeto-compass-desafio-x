@@ -15,20 +15,11 @@ import { UserInfos } from '../../context/userInfos';
 const InfoProfile = (): JSX.Element => {
   const {user} = UserInfos()
 
-  const calculateAge = (birthdate: any) => {
-    const birthDate = new Date(birthdate);
-    const currentDate = new Date();
-    const age = currentDate.getFullYear() - birthDate.getFullYear();
-
-    if (
-      currentDate.getMonth() < birthDate.getMonth() ||
-      (currentDate.getMonth() === birthDate.getMonth() && currentDate.getDate() < birthDate.getDate())
-    ) {
-      return age - 1;
-    } else {
-      return age;
-    }
-  };
+  const date = new Date();
+  const enteredDate = user?.enteredDate;
+  const birthYear = enteredDate ? parseInt(enteredDate.split('/')[2]) : 0;
+  const ageData: string = (date.getFullYear() - birthYear).toString();
+  
 
   return (
     <Card classNameCard="card-profile-info">
@@ -83,7 +74,7 @@ const InfoProfile = (): JSX.Element => {
         </dl>
         <dl className="info-status">
           <dt>Idade:</dt>
-          <dd>{calculateAge(user?.enteredDate)}</dd>
+          <dd>{ageData}</dd>
         </dl>
         <dl className="info-status">
           <dt>Quem sou eu:</dt>

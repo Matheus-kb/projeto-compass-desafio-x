@@ -171,7 +171,7 @@ const EditInformation = (): JSX.Element => {
               JSON.stringify(response.data)
             );
             console.log(response.data);
-            // navigate("/profile");
+            navigate("/profile");
           })
           .catch((error) => {
             toast.error("Erro ao salvar os dados.");

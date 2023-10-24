@@ -20,15 +20,18 @@ const ProfilePage = (props: Props): JSX.Element => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isTokenValid = async () => {
-      const token = await Cookies.get("token");
-      return token !== null;
+    const isTokenValid = Cookies.get("token");
+
+    const checkToken = async () => {
+      if (!isTokenValid) {
+        localStorage.removeItem("userData");
+        navigate("/");
+      }
     };
 
-    if (!isTokenValid()) {
-      navigate("/");
-    }
-  },[]);
+    checkToken();
+  }, []);
+  
 
   useEffect(() => {
     const userData = localStorage.getItem('userData');
