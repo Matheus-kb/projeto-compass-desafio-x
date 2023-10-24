@@ -17,6 +17,8 @@ const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
+  const [loading, setLoading] = useState(false);
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredEmailIsValid, setEnteredEmailIsValid] = useState(true);
 
@@ -37,6 +39,7 @@ const Login = (): JSX.Element => {
 
   const submitFormHandler = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
 
     if (!enteredEmail.includes("@") || enteredEmail.trim() === "") {
       setEnteredEmailIsValid(false);
@@ -63,6 +66,7 @@ const Login = (): JSX.Element => {
     } catch (error) {
       toast.error("Erro: Verifique suas credencias, ou tente novamente mais tarde.");
     }
+    setLoading(false);
   };
 
   return (
@@ -113,8 +117,10 @@ const Login = (): JSX.Element => {
                 Entrar na conta
               </ButtonCreate>
               <Link to="/register">
-                <ButtonCreateAlt type="submit">Criar conta</ButtonCreateAlt>
+                {!loading && <ButtonCreateAlt type="submit">Criar conta</ButtonCreateAlt>}
               </Link>
+              {loading && <ButtonCreateAlt>Aguarde...</ButtonCreateAlt>}
+
             </div>
           </div>
         </form>
