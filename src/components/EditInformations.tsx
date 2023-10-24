@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-
+import React, { useContext, useState, useEffect } from "react";
 import UolCircle from "./Icons/UolCircle";
 import Card from "./Card/Card";
 import Input from "./StyledComponents/Input";
@@ -14,37 +13,45 @@ import { AxiosError } from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { UserContext } from "../context/userContext";
 import { UserInfos } from "../context/userInfos";
-
+import Cookies from 'js-cookie';
 
 const EditInformation = (): JSX.Element => {
   const navigate = useNavigate();
-  const {user} = UserInfos()
+  const { user } = UserInfos();
   const { setUser } = useContext(UserContext);
-  const token = localStorage.getItem("token")
-  const [loadind, setLoading] = useState(false);
+  const token = Cookies.get("token");
+  const [loading, setLoading] = useState(false);
 
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [enteredPasswordIsValid, setEnteredPasswordIsValid] = useState(true);
+  useEffect(() => {
+    const isTokenValid = Cookies.get("token");
+    const checkToken = async () => {
+      if (!isTokenValid) {
+        localStorage.removeItem("userData");
+        navigate("/");
+      }
+    };
 
+    checkToken();
+  }, []);
+  
+
+  useEffect(() => {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const user = JSON.parse(userData);
+      setUser(user);
+    } else {
+      navigate('/');
+    }
+  },[]);
+
+  const [enteredPassword, setEnteredPassword] = useState("")
   const [enteredPasswordTwo, setEnteredPasswordTwo] = useState("");
-  const [enteredPasswordTwoIsValid, setEnteredPasswordTwoIsValid] =
-    useState(true);
-
   const [enteredName, setEnteredName] = useState("");
-  const [enteredNameIsValid, setEnteredNameIsValid] = useState(true);
-
   const [enteredDate, setEnteredDate] = useState("");
-  const [enteredDateIsValid, setEnteredDateIsValid] = useState(true);
-
   const [enteredProfession, setEnteredProfession] = useState("");
-  const [enteredProfessionIsValid, setEnteredProfessionIsValid] =
-    useState(true);
-
   const [enteredCountry, setEnteredCountry] = useState("");
-  const [enteredCountryIsValid, setEnteredCountryIsValid] = useState(true);
-
   const [enteredCity, setEnteredCity] = useState("");
-  const [enteredCityIsValid, setEnteredCityIsValid] = useState(true);
 
   const passwordChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -100,93 +107,78 @@ const EditInformation = (): JSX.Element => {
     setLoading(true);
 
     if (enteredPassword.trim().length < 8) {
-      setEnteredPasswordIsValid(false);
       isFormValid = false;
-      toast.error("Senha inválida: min 8 caracteres.")
-    } else {
-      setEnteredPasswordIsValid(true);
+      toast.error("Senha inválida: min 8 caracteres.");
     }
 
     if (enteredPasswordTwo !== enteredPassword) {
-      setEnteredPasswordTwoIsValid(false);
       isFormValid = false;
-      toast.error("As senhas precisam ser iguais.")
-    } else {
-      setEnteredPasswordTwoIsValid(true);
+      toast.error("As senhas precisam ser iguais.");
     }
 
     if (enteredName.trim() === "") {
-      setEnteredNameIsValid(false);
       isFormValid = false;
-      toast.error("Nome inválido")
-    } else {
-      setEnteredNameIsValid(true);
+      toast.error("Nome inválido");
     }
 
     if (enteredDate.trim().length < 10) {
-      setEnteredDateIsValid(false);
       isFormValid = false;
-      toast.error("Data inválida")
-    } else {
-      setEnteredDateIsValid(true);
+      toast.error("Data inválida");
     }
 
     if (enteredProfession.trim() === "") {
-      setEnteredProfessionIsValid(false);
       isFormValid = false;
-      toast.error("Profissão inválida")
-    } else {
-      setEnteredProfessionIsValid(true);
+      toast.error("Profissão inválida");
     }
 
     if (enteredCountry.trim() === "") {
-      setEnteredCountryIsValid(false);
       isFormValid = false;
-      toast.error("País inválido")
-    } else {
-      setEnteredCountryIsValid(true);
+      toast.error("País inválido");
     }
 
     if (enteredCity.trim() === "") {
-      setEnteredCityIsValid(false);
       isFormValid = false;
-      toast.error("Cidade inválida")
-    } else {
-      setEnteredCityIsValid(true);
+      toast.error("Cidade inválida");
     }
 
     if (isFormValid) {
-      console.log(user);
-      
       try {
         await api
-          .put(`/users/${user?.id}`, {enteredProfession, enteredName, enteredDate, enteredCountry, enteredCity, password:enteredPasswordTwo, email:user?.email},
-           {headers: {
-            Authorization: `Bearer ${token}`,
-          },})
+          .put(
+            `/users/${user?.id}`,
+            {
+              enteredProfession,
+              enteredName,
+              enteredDate,
+              enteredCountry,
+              enteredCity,
+              password: enteredPasswordTwo,
+              email: user?.email,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
           .then((response) => {
             setUser(response.data);
-            localStorage.setItem(
-              "userData",
-              JSON.stringify(response.data)
-            );
-            console.log(response.data);
+            localStorage.setItem("userData", JSON.stringify(response.data));
             navigate("/profile");
           })
           .catch((error) => {
             toast.error("Erro ao salvar os dados.");
-            console.log(error);
-            
           });
       } catch (error: AxiosError | any) {
         toast.error("Erro: Tente novamente mais tarde.");
       }
     }
+    setLoading(false);
   };
 
   return (
     <React.Fragment>
-      <Toaster/>
+      <Toaster />
       <section className="editions">
         <div className="image-profile">
           <Card classNameCard="edit">
@@ -214,9 +206,6 @@ const EditInformation = (): JSX.Element => {
                     value={enteredProfession}
                     onChange={professionChangeHandler}
                   />
-                  {/* {!enteredProfessionIsValid && (
-                <p className="invalid-input">Campo inválido</p>
-              )} */}
                   <Select />
                 </div>
                 <div className="inputs_">
@@ -227,9 +216,6 @@ const EditInformation = (): JSX.Element => {
                     value={enteredName}
                     onChange={nameChangeHandler}
                   />
-                  {/* {!enteredNameIsValid && (
-                <p className="invalid-input">Nome inválido</p>
-              )} */}
                   <Input
                     type="text"
                     id="birthDate"
@@ -238,9 +224,6 @@ const EditInformation = (): JSX.Element => {
                     onChange={dateChangeHandler}
                     value={enteredDate}
                   />
-                  {/* {!enteredDateIsValid && (
-                <p className="invalid-input">Data inválida</p>
-              )} */}
                 </div>
                 <div className="inputs-edit">
                   <Input
@@ -250,9 +233,7 @@ const EditInformation = (): JSX.Element => {
                     value={enteredCountry}
                     onChange={countryChangeHandler}
                   />
-                  {/* {!enteredCountryIsValid && (
-                <p className="invalid-input">País inválido</p>
-              )} */}
+
                   <Input
                     type="text"
                     id="city"
@@ -260,9 +241,6 @@ const EditInformation = (): JSX.Element => {
                     value={enteredCity}
                     onChange={cityChangeHandler}
                   />
-                  {/* {!enteredCityIsValid && (
-                <p className="invalid-input">Cidade inválida</p>
-              )} */}
                 </div>
                 <div className="inputs-edit">
                   <Input
@@ -272,9 +250,7 @@ const EditInformation = (): JSX.Element => {
                     value={enteredPassword}
                     onChange={passwordChangeHandler}
                   />
-                  {/* {!enteredPasswordIsValid && (
-                <p className="invalid-input">Senha inválida</p>
-              )} */}
+
                   <Input
                     type="password"
                     id="repet-password"
@@ -282,15 +258,17 @@ const EditInformation = (): JSX.Element => {
                     value={enteredPasswordTwo}
                     onChange={passwordTwoChangeHandler}
                   />
-                  {/* {!enteredPasswordTwoIsValid && (
-                <p className="invalid-input">As senhas precisam ser iguais.</p>
-              )} */}
                 </div>
               </div>
               <div className="form-actions-edit">
                 <Link to="/profile">
-                  <ButtonCreate type="submit" onClick={submitFormHandler}>Salvar</ButtonCreate>
+                  {!loading &&<ButtonCreate type="submit" onClick={submitFormHandler}>
+                    Salvar
+                  </ButtonCreate>}
                 </Link>
+                  {loading &&<ButtonCreate disabled>
+                    Aguarde...
+                  </ButtonCreate>}
               </div>
             </form>
           </div>

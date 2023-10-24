@@ -2,11 +2,11 @@
   "users": [
     {
       "enteredProfession": "Estudante",
-      "enteredName": "burak",
+      "enteredName": "Matheus Bitencourt",
       "enteredDate": "22/03/2003",
       "enteredCountry": "Brasil",
       "enteredCity": "Pelotas",
-      "password": "$2a$10$bvhLcpeAUxvAqEGRaNx0XevYFqk1h2h4xBofBhLZ7LKDmCOXooz5e",
+      "password": "$2a$10$w8/wJm4uhjS.QlkrXvLRZeseeshyZlJdMk36DOJX89nFEJTm7J8fO",
       "email": "test@test.com",
       "id": 1
     },

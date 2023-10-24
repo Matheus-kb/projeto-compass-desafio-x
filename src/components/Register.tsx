@@ -3,15 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { AxiosError } from "axios";
 import toast, { Toaster } from "react-hot-toast";
-
+import { api } from "../config/api";
+import { UserContext } from "../context/userContext";
 import UolCircle from "./Icons/UolCircle";
 import Card from "./Card/Card";
 import Input from "./StyledComponents/Input";
 import ButtonCreate from "./StyledComponents/ButtonCreate";
-
 import "./Form.css";
-import { api } from "../config/api";
-import { UserContext } from "../context/userContext";
 
 interface User {
   id?: number;
@@ -170,7 +168,6 @@ const Register = (): JSX.Element => {
             setUser(response.data.user);
             Cookies.set("token", response.data.accessToken);
             localStorage.setItem('userData', JSON.stringify(response.data.user));
-            console.log(response.data);
             navigate("/profile")
           })
           .catch((error) => {

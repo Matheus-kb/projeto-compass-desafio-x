@@ -81,10 +81,6 @@ const InfoProfile = (): JSX.Element => {
           <dd>{user?.enteredProfession}</dd>
         </dl>
         <dl className="info-status">
-          <dt>Moro:</dt>
-          <dd>{user?.enteredCity}</dd>
-        </dl>
-        <dl className="info-status">
           <dt>País:</dt>
           <dd>{user?.enteredCountry}</dd>
         </dl>

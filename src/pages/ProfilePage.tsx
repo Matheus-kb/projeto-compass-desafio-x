@@ -6,8 +6,6 @@ import InfoProfile from "../components/InfoProfile/InfoProfile";
 import { UserInfos } from "../context/userInfos";
 import "./ProfilePage.css";
 import Cookies from 'js-cookie';
-
-
 import ProfilePhoto from "../assets/images/profile-img.png";
 import Friends from "../components/InfoProfile/Friends/Friends";
 import Communities from "../components/InfoProfile/Communities/Communities";
@@ -21,14 +19,12 @@ const ProfilePage = (props: Props): JSX.Element => {
 
   useEffect(() => {
     const isTokenValid = Cookies.get("token");
-
     const checkToken = async () => {
       if (!isTokenValid) {
         localStorage.removeItem("userData");
         navigate("/");
       }
     };
-
     checkToken();
   }, []);
   
