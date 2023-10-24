@@ -39,15 +39,10 @@ const ProfilePage = (props: Props): JSX.Element => {
     }
   },[]);
 
-  const logout = () => {
-    Cookies.remove("token");
-    localStorage.removeItem("userData");
-    navigate('/')
-  };
 
   return (
     <div>
-      <HeaderProfile logout={logout} />
+      <HeaderProfile/>
       <div className="content-profile">
         <div className="search-mobile">
           <input

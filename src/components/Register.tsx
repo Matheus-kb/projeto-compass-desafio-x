@@ -58,7 +58,6 @@ const Register = (): JSX.Element => {
     setRelationship(option);
   };
 
-
   const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEnteredEmail(event.target.value);
   };
@@ -169,7 +168,6 @@ const Register = (): JSX.Element => {
         enteredCountry,
         enteredCity,
         relationship,
-        
       };
 
       try {
@@ -182,9 +180,7 @@ const Register = (): JSX.Element => {
             navigate("/profile")
           })
           .catch((error) => {
-            toast.error("Email já cadastrado.");
-            console.log(error.message);
-            
+            toast.error("Email já cadastrado.");            
           });
       } catch (error: AxiosError | any) {
         toast.error("Erro: Tente novamente mais tarde.");

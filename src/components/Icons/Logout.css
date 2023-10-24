@@ -1,0 +1,15 @@
+.logout-svg {
+  margin-left: 6px;
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+}
+
+@media (min-width: 1200px) {
+  .logout-svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}
