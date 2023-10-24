@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from 'js-cookie';
 import { AxiosError } from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -168,7 +168,7 @@ const Register = (): JSX.Element => {
           .post("/users", user)
           .then((response) => {
             setUser(response.data.user);
-            localStorage.setItem("token", response.data.accessToken);
+            Cookies.set("token", response.data.accessToken);
             localStorage.setItem('userData', JSON.stringify(response.data.user));
             console.log(response.data);
             navigate("/profile")

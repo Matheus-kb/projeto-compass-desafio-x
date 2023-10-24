@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../config/api";
+import Cookies from 'js-cookie';
 
 import UolCircle from "./Icons/UolCircle";
 import Card from "./Card/Card";
@@ -52,7 +53,7 @@ const Login = (): JSX.Element => {
         password: enteredPassword,
       });
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.accessToken);
+        Cookies.set("token", response.data.accessToken);
         localStorage.setItem("userData", JSON.stringify(response.data.user));
         setUser(response.data.user);
         navigate("/profile");

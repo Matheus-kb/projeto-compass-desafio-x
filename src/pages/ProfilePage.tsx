@@ -5,6 +5,7 @@ import HeaderProfile from "../components/Header/HeaderProfile";
 import InfoProfile from "../components/InfoProfile/InfoProfile";
 import { UserInfos } from "../context/userInfos";
 import "./ProfilePage.css";
+import Cookies from 'js-cookie';
 
 
 import ProfilePhoto from "../assets/images/profile-img.png";
@@ -20,7 +21,7 @@ const ProfilePage = (props: Props): JSX.Element => {
 
   useEffect(() => {
     const isTokenValid = async () => {
-      const token = await localStorage.getItem("token");
+      const token = await Cookies.get("token");
       return token !== null;
     };
 
@@ -40,7 +41,7 @@ const ProfilePage = (props: Props): JSX.Element => {
   },[]);
 
   const logout = () => {
-    localStorage.removeItem("token");
+    Cookies.remove("token");
     localStorage.removeItem("userData");
     navigate('/')
   };
