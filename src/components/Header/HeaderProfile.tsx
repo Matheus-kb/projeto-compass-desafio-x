@@ -1,13 +1,11 @@
-import { useContext } from 'react'
 import { NavLink} from 'react-router-dom';
 import './HeaderProfile.css';
 import ProfileImg from '../../assets/images/profile-img.png';
-import { UserContext } from '../../context/userContext';
 import { UserInfos } from '../../context/userInfos';
 import Logout from '../Icons/Logout';
 
 const HeaderProfile = (props:any): JSX.Element => {
-  const { setUser } = useContext(UserContext);
+
   const { user } = UserInfos();
 
   return (

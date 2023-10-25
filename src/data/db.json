@@ -1,5 +1,15 @@
 {
   "users": [
-    
+    {
+      "email": "matheus@gmail.com",
+      "password": "$2a$10$bdoYcuZAt4QtHmLL.RNiA.9pmOixK08Zo5L/VhU5kxP7Dx9.YkeMK",
+      "enteredName": "Matheus Bitencourt",
+      "enteredDate": "22/03/2003",
+      "enteredProfession": "Dev . Front-End",
+      "enteredCountry": "Brasil",
+      "enteredCity": "Pelotas",
+      "relationship": "Namorando",
+      "id": 1
+    }
   ]
 }
