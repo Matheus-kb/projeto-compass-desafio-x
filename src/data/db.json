@@ -1,26 +1,5 @@
 {
   "users": [
-    {
-      "enteredProfession": "garoto de programa",
-      "enteredName": "Matheus Bitencourt",
-      "enteredDate": "22/03/2003",
-      "enteredCountry": "Brasil",
-      "enteredCity": "Pelotas - Sitio Floresta",
-      "relationship": "Preocupado",
-      "password": "$2a$10$KAit0UHsNDN8XJPIO982POpIZAzR9eTTadnETFwdt9QN4Fhgmjqa2",
-      "email": "test@test.com",
-      "id": 1
-    },
-    {
-      "enteredProfession": "Estudante",
-      "enteredName": "Júlia",
-      "enteredDate": "11/11/1111",
-      "enteredCountry": "Brasil",
-      "enteredCity": "Pelotas",
-      "relationship": "Namorando",
-      "password": "$2a$10$WJb0YZABm6uE.JVgWm.p9uRnlFdCSBpNFVQnd.v69DWEnSphkEm2O",
-      "email": "julia@gmail.com",
-      "id": 2
-    }
+    
   ]
 }
